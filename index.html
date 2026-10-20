@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building the AI Classroom</title>
+<meta name="description" content="AI and data science course development strategies, competency alignment with the 2029 EPAS, and classroom and PhD program AI policies informed by the ETHICS framework.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf8f4;
+  --surface: #ffffff;
+  --surface-2: #f2eee6;
+  --text: #1f2328;
+  --muted: #5b616b;
+  --border: #e3ddd1;
+  --accent: #2f5d50;
+  --accent-soft: #e3eee9;
+  --accent-text: #24493f;
+  --notice-bg: #fff4d6;
+  --notice-border: #e8c766;
+  --notice-text: #4a3a08;
+  --code-bg: #1f2a27;
+  --code-text: #e7efe9;
+  --shadow: 0 1px 2px rgba(20,20,20,.04), 0 4px 16px rgba(20,20,20,.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141716;
+    --surface: #1b1f1e;
+    --surface-2: #222826;
+    --text: #e8ebe9;
+    --muted: #a1aaa6;
+    --border: #2e3633;
+    --accent: #7fc4ad;
+    --accent-soft: #1f322c;
+    --accent-text: #a8dcc9;
+    --notice-bg: #2d2610;
+    --notice-border: #6b5a1f;
+    --notice-text: #f2e2ad;
+    --code-bg: #0e1110;
+    --code-text: #dfe8e3;
+    --shadow: none;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141716;
+  --surface: #1b1f1e;
+  --surface-2: #222826;
+  --text: #e8ebe9;
+  --muted: #a1aaa6;
+  --border: #2e3633;
+  --accent: #7fc4ad;
+  --accent-soft: #1f322c;
+  --accent-text: #a8dcc9;
+  --notice-bg: #2d2610;
+  --notice-border: #6b5a1f;
+  --notice-text: #f2e2ad;
+  --code-bg: #0e1110;
+  --code-text: #dfe8e3;
+  --shadow: none;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-underline-offset: 2px; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+
+/* Notice */
+.notice {
+  background: var(--notice-bg);
+  border-bottom: 1px solid var(--notice-border);
+  color: var(--notice-text);
+  font-size: 14.5px;
+}
+.notice .wrap { padding-top: 12px; padding-bottom: 12px; }
+.notice a { color: inherit; font-weight: 600; }
+
+/* Header */
+header.hero { padding: 64px 0 40px; }
+.kicker {
+  font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); font-weight: 600; margin: 0 0 12px;
+}
+h1, h2 { font-family: Fraunces, Georgia, serif; font-weight: 650; letter-spacing: -.01em; }
+h1 { font-size: clamp(36px, 7vw, 60px); line-height: 1.05; margin: 0 0 18px; }
+.lede { font-size: 19px; color: var(--muted); max-width: 680px; margin: 0; }
+
+/* Nav */
+nav.toc {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+nav.toc .wrap { display: flex; gap: 6px; overflow-x: auto; padding-top: 10px; padding-bottom: 10px; align-items: center; }
+nav.toc a {
+  white-space: nowrap; text-decoration: none; color: var(--text);
+  font-size: 14px; font-weight: 500; padding: 6px 12px; border-radius: 999px;
+}
+nav.toc a:hover, nav.toc a.active { background: var(--accent-soft); color: var(--accent-text); }
+.theme-btn {
+  margin-left: auto; flex-shrink: 0; background: none; border: 1px solid var(--border);
+  color: var(--muted); border-radius: 999px; padding: 5px 10px; font: inherit; font-size: 13px; cursor: pointer;
+}
+
+/* Sections */
+section { padding: 56px 0 8px; }
+section + section { border-top: 1px solid var(--border); margin-top: 48px; }
+.eyebrow {
+  display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent-text); background: var(--accent-soft); padding: 4px 10px; border-radius: 999px; margin-bottom: 14px;
+}
+h2 { font-size: clamp(28px, 4.5vw, 38px); line-height: 1.15; margin: 0 0 16px; }
+.intro { font-size: 17.5px; max-width: 720px; margin: 0 0 32px; }
+h3 {
+  font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+  margin: 40px 0 14px; font-weight: 600;
+}
+
+/* Questions */
+ol.questions { list-style: none; counter-reset: q; padding: 0; margin: 0; display: grid; gap: 10px; }
+ol.questions li {
+  counter-increment: q; position: relative; padding: 14px 16px 14px 56px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow);
+}
+ol.questions li::before {
+  content: counter(q); position: absolute; left: 16px; top: 13px;
+  width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--accent); color: var(--bg); font-size: 13px; font-weight: 600;
+}
+
+/* Resources */
+.resources { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.res {
+  display: flex; flex-direction: column; gap: 6px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 16px 18px; text-decoration: none; color: var(--text); box-shadow: var(--shadow);
+  transition: border-color .15s, transform .15s;
+}
+.res:hover { border-color: var(--accent); transform: translateY(-1px); }
+.res .t { font-weight: 600; color: var(--accent); line-height: 1.35; }
+.res .d { font-size: 14.5px; color: var(--muted); }
+.res .d em { color: var(--text); font-style: italic; }
+.tag {
+  align-self: flex-start; font-size: 11.5px; font-weight: 600; letter-spacing: .04em;
+  color: var(--muted); border: 1px solid var(--border); border-radius: 6px; padding: 1px 7px;
+}
+
+/* Tables */
+.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--surface-2); font-size: 13px; font-weight: 600; color: var(--muted); letter-spacing: .02em; }
+td.code { font-weight: 600; white-space: nowrap; color: var(--accent-text); }
+table.ethics { min-width: 720px; }
+table.ethics td.letter {
+  font-family: Fraunces, Georgia, serif; font-size: 26px; font-weight: 650; color: var(--accent);
+  width: 48px; text-align: center; padding-top: 8px;
+}
+table.ethics td.principle { font-weight: 600; white-space: nowrap; }
+.note { font-size: 14px; color: var(--muted); margin: 12px 0 0; }
+
+/* Syllabus */
+.syllabus { position: relative; background: var(--code-bg); color: var(--code-text); border-radius: 12px; padding: 22px 22px 18px; }
+.syllabus p { margin: 0 0 14px; font: 14.5px/1.65 "JetBrains Mono", ui-monospace, monospace; }
+.syllabus p:last-of-type { margin-bottom: 0; }
+.syllabus .ph { color: #f0c674; }
+.copy-btn {
+  position: absolute; top: 12px; right: 12px; font: inherit; font-size: 13px; font-weight: 500;
+  background: rgba(255,255,255,.1); color: var(--code-text); border: 1px solid rgba(255,255,255,.18);
+  border-radius: 8px; padding: 5px 12px; cursor: pointer;
+}
+.copy-btn:hover { background: rgba(255,255,255,.18); }
+.syllabus p:first-child { padding-right: 80px; }
+
+/* Shelf */
+.shelf-cols { display: grid; grid-template-columns: 1fr; gap: 8px 32px; }
+@media (min-width: 760px) { .shelf-cols { grid-template-columns: 1.4fr 1fr; } }
+.shelf-cols .resources { grid-template-columns: 1fr; }
+
+footer { margin-top: 72px; padding: 28px 0 48px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
+
+@media (max-width: 560px) {
+  header.hero { padding: 40px 0 28px; }
+  .lede { font-size: 17px; }
+  section { padding-top: 40px; }
+  th, td { padding: 10px 12px; }
+}
+</style>
+</head>
+<body>
+
+<div class="notice" role="note">
+  <div class="wrap">
+    <strong>The 2029 EPAS first draft is open for public comment.</strong>
+    It adds AI and technology language across competencies and proposes a dedicated Competency 10 on technology in practice.
+    Programs can weigh in until 11:59 p.m. ET on November 20.
+    <a href="https://www.cswe.org/2029-epas">Read the draft and comment at CSWE →</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">SWAN roundtable · CSWE APM 2026</p>
+    <h1>Building the AI Classroom</h1>
+    <p class="lede">AI and data science course development strategies, competency alignment with the 2029 EPAS, and classroom and PhD program AI policies informed by the ETHICS framework.</p>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <div class="wrap">
+    <a href="#courses">Courses &amp; pedagogy</a>
+    <a href="#epas">2029 EPAS alignment</a>
+    <a href="#policy">AI policy &amp; ETHICS</a>
+    <a href="#shelf">More resources</a>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle color theme">Theme</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- Thread 1 -->
+  <section id="courses">
+    <span class="eyebrow">Thread 1</span>
+    <h2>Course development and pedagogy</h2>
+    <p class="intro">Whether to teach AI is settled. The open questions are where it lives in the curriculum, who teaches it, and how students practice using it critically without outsourcing their thinking.</p>
+
+    <h3>Questions to consider</h3>
+    <ol class="questions">
+      <li>Standalone AI/data science course, threaded across existing courses, or both? What did your program choose, and what would you change?</li>
+      <li>What is the minimum AI literacy every BSW/MSW graduate needs, and what belongs only in an elective or doctoral course?</li>
+      <li>Which assignment has worked best for teaching students to critique AI output rather than just use it?</li>
+      <li>Who teaches this at your school, and what support (release time, co-teaching with CS or data science, workshops) made it possible?</li>
+    </ol>
+
+    <h3>Read and borrow</h3>
+    <div class="resources">
+      <a class="res" href="https://link.springer.com/chapter/10.1007/978-3-032-18443-6_23">
+        <span class="t">Building AI Literacy and Competency in Social Work</span>
+        <span class="d">Yang &amp; Liechty (2026), in <em>Artificial Intelligence in Social Work</em>. A three-tier model: foundational literacy for all, applied skills, and leadership and governance.</span>
+      </a>
+      <a class="res" href="https://link.springer.com/book/9783032184429">
+        <span class="t">Artificial Intelligence in Social Work: Bridging Technology and Humanity</span>
+        <span class="d">An &amp; Lindsey (Eds.), Springer, 2026. Edited volume with chapters on ethics, literacy, and practice.</span>
+      </a>
+      <a class="res" href="https://learningacademy.cswe.org/products/integrating-ai-into-social-work-education-making-the-leap-into-our-future">
+        <span class="tag">CSWE</span>
+        <span class="t">Integrating AI into Social Work Education: Making the Leap into Our Future</span>
+        <span class="d">CSWE Learning Academy course for educators.</span>
+      </a>
+      <a class="res" href="https://iriss.org.uk/resource/generative-ai-critical-thinking-and-social-work-practice/">
+        <span class="t">Generative AI, Critical Thinking and Social Work Practice</span>
+        <span class="d">Iriss (Scotland). Short, practice-facing resource that works well as a class reading.</span>
+      </a>
+      <a class="res" href="https://arxiv.org/pdf/2603.06839">
+        <span class="tag">Preprint</span>
+        <span class="t">From Job Postings to Curriculum Decisions</span>
+        <span class="d">Using AI to analyze job postings as workforce intelligence for MSW program planning.</span>
+      </a>
+      <a class="res" href="https://sicss.io">
+        <span class="t">Summer Institutes in Computational Social Science</span>
+        <span class="d">Free open-access lectures and materials you can adapt for a doctoral methods course.</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Thread 2 -->
+  <section id="epas">
+    <span class="eyebrow">Thread 2</span>
+    <h2>Competency alignment and evaluation with the 2029 EPAS</h2>
+    <p class="intro">CSWE's 2025 Technology Task Force recommended making technology prominent in the 2029 EPAS. Draft 1 does both: it threads AI through existing competencies and proposes a new one. The draft is a moving target, so this is a good moment to map courses and plan assessment.</p>
+
+    <h3>Where AI shows up in Draft 1</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Competency</th><th scope="col">AI and technology emphasis</th></tr></thead>
+        <tbody>
+          <tr><td class="code">C1 Ethics</td><td>Use emerging technologies and AI ethically, and understand how they shape the practice environment.</td></tr>
+          <tr><td class="code">C4 Research</td><td>Ethical use of technology in the research process.</td></tr>
+          <tr><td class="code">C5 Policy</td><td>Analyze how AI and digital-system policies affect privacy, self-determination, and access to services.</td></tr>
+          <tr><td class="code">C7 Assessment</td><td>Critically evaluate how digital technology affects assessment.</td></tr>
+          <tr><td class="code">C8 Intervention</td><td>Use technology ethically and appropriately in interventions.</td></tr>
+          <tr><td class="code">C9 Evaluation</td><td>Recognize the opportunities and limits of data, AI, and digital systems.</td></tr>
+          <tr><td class="code">C10 Technology</td><td><strong>New:</strong> evaluate, select, and integrate technology, including AI, and examine its effect on access to resources.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Paraphrased from the CSWE 2029 EPAS Draft 1 page (Oct 2026). Check the draft for exact wording before using it in course documents.</p>
+
+    <h3>Questions to consider</h3>
+    <ol class="questions">
+      <li>A dedicated Competency 10 or AI woven through C1 to C9: which serves students better, and which is easier to assess?</li>
+      <li>What would a valid, observable behavior for "selects and integrates AI ethically" look like in field? Who rates it?</li>
+      <li>How are you assessing AI-related learning now: rubrics, simulations, portfolios, field evaluations?</li>
+      <li>What feedback will you or your program submit on the draft before November 20?</li>
+    </ol>
+
+    <h3>Read and borrow</h3>
+    <div class="resources">
+      <a class="res" href="https://www.cswe.org/2029-epas">
+        <span class="tag">CSWE</span>
+        <span class="t">2029 EPAS Draft 1 and public comment survey</span>
+        <span class="d">Comment period Oct 13 to Nov 20, 2026. Draft 2 is expected for the 2027 APM.</span>
+      </a>
+      <a class="res" href="https://www.cswe.org/sites/default/files/2026-07/ARL_Technology_Report.pdf">
+        <span class="tag">CSWE</span>
+        <span class="t">Task Force on Technology and Social Work Education Report</span>
+        <span class="d">The recommendations behind the draft, including minimum AI competency and field education standards.</span>
+      </a>
+      <a class="res" href="https://www.journals.uchicago.edu/doi/full/10.1086/735187">
+        <span class="t">AI Literacy for Social Work: Implications for Core Competencies</span>
+        <span class="d">Ahn, Choi, Fowler, &amp; Song (2025), <em>JSSWR</em>. Maps AI literacy onto each of the nine current competencies; useful for course mapping.</span>
+      </a>
+      <a class="res" href="https://www.tandfonline.com/doi/abs/10.1080/10437797.2024.2340931">
+        <span class="t">Introducing Generative AI Into the MSW Curriculum: A Proposal for the 2029 EPAS</span>
+        <span class="d">Rodriguez, Goldkind, Victor, Hiltz, &amp; Perron (2024), <em>JSWE</em>. The case for a tenth competency.</span>
+      </a>
+      <a class="res" href="https://www.socialworkers.org/Practice/NASW-Practice-Standards-Guidelines/Standards-for-Technology-in-Social-Work-Practice">
+        <span class="tag">NASW · ASWB · CSWE · CSWA</span>
+        <span class="t">Standards for Technology in Social Work Practice</span>
+        <span class="d">The 2017 joint standards, including the section on social work education.</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Thread 3 -->
+  <section id="policy">
+    <span class="eyebrow">Thread 3</span>
+    <h2>Classroom and PhD program AI policies informed by ETHICS</h2>
+    <p class="intro">The ETHICS framework (Lee et al., 2025, <em>JSSWR</em>) sets six principles for AI use in social work research. The same principles give a structure for course syllabi and doctoral program guidance, where students are both learners and emerging researchers.</p>
+
+    <div class="table-wrap">
+      <table class="ethics">
+        <thead><tr><th scope="col" aria-label="Letter"></th><th scope="col">Principle</th><th scope="col">In a course syllabus</th><th scope="col">In a PhD program</th></tr></thead>
+        <tbody>
+          <tr><td class="letter">E</td><td class="principle">Equity</td><td>Ensure access to approved tools so policy does not reward students who can pay for premium AI.</td><td>Weigh who benefits from AI-enabled studies; avoid biased samples and data.</td></tr>
+          <tr><td class="letter">T</td><td class="principle">Transparency</td><td>Require a short AI-use statement on assignments: tool, purpose, and what the student changed.</td><td>Disclose AI use in proposals, IRB materials, and dissertations, with its limits.</td></tr>
+          <tr><td class="letter">H</td><td class="principle">Human-centeredness</td><td>Keep client and field information out of AI tools; protect the relational skills AI cannot practice for you.</td><td>Explain AI's role in consent and keep human oversight of AI-assisted coding and analysis.</td></tr>
+          <tr><td class="letter">I</td><td class="principle">Integrity</td><td>The student is accountable for every claim and citation; verify all AI output.</td><td>AI supports but does not replace the scholar; build ongoing AI literacy into training.</td></tr>
+          <tr><td class="letter">C</td><td class="principle">Collaboration</td><td>Co-create the policy with students in week one and revisit it mid-term.</td><td>Set data governance and authorship expectations with mentors and community partners.</td></tr>
+          <tr><td class="letter">S</td><td class="principle">Safety</td><td>Name clear stop points, such as no AI with case notes or identifiable data.</td><td>Set stop/go criteria for AI use and pause when privacy or stigma risks appear.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">The columns apply ETHICS to teaching and doctoral training as a starting point for discussion. The framework itself was written for research.</p>
+
+    <h3>Starter syllabus language</h3>
+    <div class="syllabus" id="syllabus">
+      <button class="copy-btn" id="copyBtn" type="button">Copy</button>
+      <p>AI use in this course follows the ETHICS principles (Equity, Transparency, Human-centeredness, Integrity, Collaboration, Safety).</p>
+      <p>You may use <span class="ph">[approved tools]</span> for <span class="ph">[brainstorming, feedback on drafts, coding help]</span>. AI use is not permitted for <span class="ph">[reflection papers, exams, any task involving client or field information]</span>.</p>
+      <p>When you use AI, add a two-sentence note to your submission: which tool, for what, and what you changed. You are responsible for the accuracy of everything you submit, including citations.</p>
+      <p>Never enter identifiable client, agency, or field placement information into an AI tool. If you are unsure whether a use is appropriate, ask first. We will revisit this policy together at mid-semester.</p>
+    </div>
+
+    <h3>Questions to consider</h3>
+    <ol class="questions">
+      <li>Is your current syllabus policy about permission (allowed or banned) or about practice (how to use AI well)? Which ETHICS principle is missing?</li>
+      <li>Should a PhD program policy differ from a course policy? Think about comprehensive exams, dissertations, and AI as a research method versus a writing aid.</li>
+      <li>How do you handle field: agency rules, client data, and AI documentation tools students already see at placement?</li>
+      <li>Who owns the policy at your school: individual faculty, the program, or the university? What is working?</li>
+    </ol>
+
+    <h3>Read and borrow</h3>
+    <div class="resources">
+      <a class="res" href="https://www.journals.uchicago.edu/doi/full/10.1086/739116">
+        <span class="t">ETHICS: An Ethical Framework for AI Use in Social Work Research</span>
+        <span class="d">Lee, Pace, Cha, Rao, Hahm, An, &amp; Denby-Brinson (2025), <em>JSSWR</em> 16(4).</span>
+      </a>
+      <a class="res" href="https://www.socialworkers.org/About/Ethics/AI-and-Social-Work">
+        <span class="tag">NASW</span>
+        <span class="t">NASW: AI and Social Work</span>
+        <span class="d">Ethics tipsheet, privacy guidance, CE courses, and podcasts in one hub.</span>
+      </a>
+      <a class="res" href="https://link.springer.com/chapter/10.1007/978-3-032-18443-6_2">
+        <span class="t">Ethical Foundations of AI in Social Work</span>
+        <span class="d">Chapter in An &amp; Lindsey (Eds.), 2026.</span>
+      </a>
+      <a class="res" href="https://www.socialworktoday.com/archive/Summer23p26.shtml">
+        <span class="t">Ethics and Best Practices: AI and Social Work Education</span>
+        <span class="d"><em>Social Work Today</em>. An accessible overview to share with colleagues new to the topic.</span>
+      </a>
+      <a class="res" href="https://libguides.bluffton.edu/ai/policy">
+        <span class="t">Syllabi Policies for AI Generative Tools</span>
+        <span class="d">Links to Lance Eaton's crowdsourced collection of real syllabus policies across disciplines.</span>
+      </a>
+      <a class="res" href="https://cte.ku.edu/building-ai-policies-your-syllabus">
+        <span class="t">Building AI Policies Into Your Syllabus</span>
+        <span class="d">University of Kansas Center for Teaching Excellence. Practical options from restrictive to open.</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Shelf -->
+  <section id="shelf">
+    <span class="eyebrow">Keep going</span>
+    <h2>Networks and learning</h2>
+    <div class="shelf-cols">
+      <div>
+        <h3>Communities</h3>
+        <div class="resources">
+          <a class="res" href="https://socialworkai.net">
+            <span class="t">Social Work AI Network (SWAN)</span>
+            <span class="d">Tonight's host. Collaboration and mentoring for social work AI scholars.</span>
+          </a>
+          <a class="res" href="https://dsai-sig-directory.vercel.app/resources">
+            <span class="t">SSWR Data Science &amp; AI SIG directory</span>
+            <span class="d">A curated list of books, journals, and standards.</span>
+          </a>
+          <a class="res" href="https://grandchallengesforsocialwork.org/harness-technology-for-social-good/">
+            <span class="t">Grand Challenge: Harness Technology for Social Good</span>
+          </a>
+          <a class="res" href="https://www.husita.org">
+            <span class="t">husITa</span>
+            <span class="d">International association for ethical technology in human services.</span>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3>Build your own skills</h3>
+        <div class="resources">
+          <a class="res" href="https://www.kaggle.com/learn">
+            <span class="t">Kaggle Learn</span>
+            <span class="d">Short, free courses in Python, pandas, and machine learning.</span>
+          </a>
+          <a class="res" href="https://carpentries.org">
+            <span class="t">The Carpentries</span>
+            <span class="d">Workshops on coding and data skills for researchers.</span>
+          </a>
+          <a class="res" href="https://sicss.io">
+            <span class="t">SICSS</span>
+            <span class="d">Computational social science institutes and open lectures.</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Curated by Joyce Lee for the SWAN roundtable at CSWE APM 2026. Links checked October 19, 2026.
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Theme toggle
+  var root = document.documentElement;
+  try { var saved = localStorage.getItem('theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+  document.getElementById('themeBtn').addEventListener('click', function () {
+    var current = root.getAttribute('data-theme') ||
+      (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+
+  // Copy syllabus language
+  var btn = document.getElementById('copyBtn');
+  btn.addEventListener('click', function () {
+    var text = Array.prototype.map.call(document.querySelectorAll('#syllabus p'), function (p) {
+      return p.textContent;
+    }).join('\n\n');
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); };
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () {});
+  });
+
+  // Highlight current section in nav
+  var links = document.querySelectorAll('nav.toc a');
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); });
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  document.querySelectorAll('main section').forEach(function (s) { obs.observe(s); });
+})();
+</script>
+</body>
+</html>
