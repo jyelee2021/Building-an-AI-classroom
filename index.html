@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Building the AI Classroom</title>
-<meta name="description" content="AI and data science course development strategies, competency alignment with the 2029 , and classroom and PhD program AI policies informed by the ETHICS framework.">
+<meta name="description" content="AI and data science course development strategies, competency alignment with the 2029 CSWE EPAS, and classroom and PhD program AI policies informed by the ETHICS framework.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
@@ -152,18 +152,61 @@ table.ethics td.letter {
 table.ethics td.principle { font-weight: 600; white-space: nowrap; }
 .note { font-size: 14px; color: var(--muted); margin: 12px 0 0; }
 
-/* Syllabus */
-.syllabus { position: relative; background: var(--code-bg); color: var(--code-text); border-radius: 12px; padding: 22px 22px 18px; }
-.syllabus p { margin: 0 0 14px; font: 14.5px/1.65 "JetBrains Mono", ui-monospace, monospace; }
-.syllabus p:last-of-type { margin-bottom: 0; }
-.syllabus .ph { color: #f0c674; }
-.copy-btn {
-  position: absolute; top: 12px; right: 12px; font: inherit; font-size: 13px; font-weight: 500;
-  background: rgba(255,255,255,.1); color: var(--code-text); border: 1px solid rgba(255,255,255,.18);
-  border-radius: 8px; padding: 5px 12px; cursor: pointer;
+/* Strategies */
+ol.strategies { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 0; margin-left: 15px; border-left: 2px solid var(--accent-soft); }
+ol.strategies li { counter-increment: s; position: relative; padding: 4px 0 20px 44px; }
+ol.strategies li:last-child { padding-bottom: 4px; }
+ol.strategies li::before {
+  content: counter(s); position: absolute; left: -15px; top: 2px;
+  width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--bg); border: 2px solid var(--accent); color: var(--accent-text); font-size: 13px; font-weight: 600;
 }
-.copy-btn:hover { background: rgba(255,255,255,.18); }
-.syllabus p:first-child { padding-right: 80px; }
+ol.strategies strong { display: block; margin-bottom: 2px; }
+
+/* Downloadable file */
+.file {
+  display: flex; align-items: center; gap: 16px; text-decoration: none; color: var(--text);
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; box-shadow: var(--shadow);
+}
+.file:hover { border-color: var(--accent); }
+.file > span:nth-child(2) { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+.file .t { font-weight: 600; color: var(--accent); line-height: 1.35; }
+.file .d { font-size: 14.5px; color: var(--muted); }
+.file-icon {
+  flex-shrink: 0; width: 48px; height: 56px; border-radius: 6px; display: grid; place-items: center;
+  background: var(--accent-soft); color: var(--accent-text); font-size: 11px; font-weight: 700; letter-spacing: .04em;
+}
+.dl { flex-shrink: 0; font-size: 14px; font-weight: 600; color: var(--accent-text); background: var(--accent-soft); padding: 6px 12px; border-radius: 8px; }
+
+/* Expandable documents */
+.docs { display: grid; gap: 14px; }
+details.doc { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); }
+details.doc[open] { border-color: var(--accent); }
+details.doc summary {
+  list-style: none; cursor: pointer; padding: 16px 52px 16px 18px; position: relative;
+  display: flex; flex-direction: column; gap: 6px;
+}
+details.doc summary::-webkit-details-marker { display: none; }
+details.doc summary::after {
+  content: "+"; position: absolute; right: 18px; top: 14px; font-size: 24px; line-height: 1; color: var(--accent);
+}
+details.doc[open] summary::after { content: "–"; }
+details.doc summary .t { font-weight: 600; color: var(--accent); line-height: 1.35; }
+details.doc summary .d { font-size: 14.5px; color: var(--muted); }
+.doc-body { padding: 4px 18px 20px; border-top: 1px solid var(--border); font-size: 15.5px; }
+.doc-body h4 { font-size: 15px; margin: 20px 0 6px; }
+.doc-body ul { margin: 6px 0 12px; padding-left: 20px; }
+.doc-body li { margin-bottom: 4px; }
+.doc-body blockquote {
+  margin: 16px 0; padding: 12px 16px; background: var(--surface-2); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; font-size: 15px;
+}
+.doc-body .mini { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 10px 0 0; }
+.two-col { display: grid; grid-template-columns: 1fr; gap: 0 28px; }
+@media (min-width: 720px) { .two-col { grid-template-columns: 1fr 1fr; } }
+.dl-link {
+  display: inline-block; margin-top: 8px; font-weight: 600; font-size: 14.5px; text-decoration: none;
+  color: var(--accent-text); background: var(--accent-soft); padding: 8px 14px; border-radius: 8px;
+}
 
 /* Shelf */
 .shelf-cols { display: grid; grid-template-columns: 1fr; gap: 8px 32px; }
@@ -177,6 +220,8 @@ footer { margin-top: 72px; padding: 28px 0 48px; border-top: 1px solid var(--bor
   .lede { font-size: 17px; }
   section { padding-top: 40px; }
   th, td { padding: 10px 12px; }
+  .file-icon { display: none; }
+  .file { flex-wrap: wrap; }
 }
 </style>
 </head>
@@ -185,16 +230,16 @@ footer { margin-top: 72px; padding: 28px 0 48px; border-top: 1px solid var(--bor
 <header class="hero">
   <div class="wrap">
     <h1>Building the AI Classroom</h1>
-    <p class="lede">Resources on 1) AI and data science course development strategies, 2) how to align courses with the 2029 CSWE EPAS, and 3) classroom and PhD program AI policies development informed by the ETHICS framework.</p>
+    <p class="lede">This resource page provides strategies for 1) designing an AI course in social work; 2) aligning courses with the Council on Social Work Education's 2029 Educational Policy and Accreditation Standards (EPAS); 3) developing classroom and PhD program AI policies informed by the ETHICS framework; and 4) finding other related sources.</p>
   </div>
 </header>
 
 <nav class="toc" aria-label="Sections">
   <div class="wrap">
-    <a href="#courses">AI/DS course development</a>
-    <a href="#">2029 CSWE EPAS alignment</a>
-    <a href="#policy">AI course and program policy &amp; ETHICS</a>
-    <a href="#shelf">More resources</a>
+    <a href="#courses">AI course design</a>
+    <a href="#epas">2029 EPAS alignment</a>
+    <a href="#policy">AI policy</a>
+    <a href="#shelf">Additional resources</a>
     <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle color theme">Theme</button>
   </div>
 </nav>
@@ -203,19 +248,27 @@ footer { margin-top: 72px; padding: 28px 0 48px; border-top: 1px solid var(--bor
 
   <!-- Theme 1 -->
   <section id="courses">
-    <span class="eyebrow">Thread 1</span>
-    <h2>Course development and pedagogy</h2>
-    <p class="intro">Whether to teach AI is settled. The open questions are where it lives in the curriculum, who teaches it, and how students practice using it critically without outsourcing their thinking.</p>
+    <span class="eyebrow">Theme 1</span>
+    <h2>Designing an AI course in social work</h2>
 
     <h3>Questions to consider</h3>
     <ol class="questions">
-      <li>Standalone AI/data science course, threaded across existing courses, or both? What did your program choose, and what would you change?</li>
-      <li>What is the minimum AI literacy every BSW/MSW graduate needs, and what belongs only in an elective or doctoral course?</li>
-      <li>Which assignment has worked best for teaching students to critique AI output rather than just use it?</li>
-      <li>Who teaches this at your school, and what support (release time, co-teaching with CS or data science, workshops) made it possible?</li>
+      <li>Does your university already provide AI literacy training? If so, what content is covered and what content is left out?</li>
+      <li>What is the minimum level of discipline-specific (social work) AI literacy your students need, and what are those domains?</li>
+      <li>How might you ensure the course is in alignment with CSWE's competencies?</li>
+      <li>Which assignments might work best to teach not only AI use but critical analysis of AI use, outputs, and impacts?</li>
     </ol>
 
-    <h3>Read and borrow</h3>
+    <h3>Five strategies for developing an AI course in a social work program</h3>
+    <ol class="strategies">
+      <li><strong>Build the course as a tiered progression from literacy to competency.</strong> Following Yang and Liechty's (2026) three-tier model, Tier 1 gives every MSW student foundational AI literacy, Tier 2 builds applied, role-specific skills, and Tier 3 develops leadership, governance, and research capacity for doctoral students.</li>
+      <li><strong>Tie every module and assessment to a named EPAS 2022 competency.</strong> Each assignment should link to one or two competencies. Assessments should move from what students know, to how they can show critical analysis, and to what they do in field placements.</li>
+      <li><strong>Grade critical thinking and human judgment, not polished output.</strong> AI tools invite over-reliance and skill loss, especially among less experienced workers, including most MSW students. Assignments should make the reasoning and critical analysis visible. For example, students write their own assessment first, then have an AI challenge it, document what changed, and keep a detailed log of their AI use.</li>
+      <li><strong>Teach ethics, equity, and data governance in every unit, not in a single week.</strong> Each module should ask who benefits, who is burdened, what consent is required, and what law applies, drawing on HIPAA, FERPA, and NASW Code standards.</li>
+      <li><strong>If possible, use real data and teach MSW and doctoral students differently.</strong> MSW students should work with practice-facing tools, documentation privacy, data visualization, and program evaluation; employer postings name these skills (Hiltz, Victor, &amp; Perron, 2024). Doctoral students should learn, build, and validate computational methods (e.g., supervised and unsupervised machine learning) on complex data.</li>
+    </ol>
+
+    <h3>Evidence and readings</h3>
     <div class="resources">
       <a class="res" href="https://link.springer.com/chapter/10.1007/978-3-032-18443-6_23">
         <span class="t">Building AI Literacy and Competency in Social Work</span>
@@ -247,10 +300,10 @@ footer { margin-top: 72px; padding: 28px 0 48px; border-top: 1px solid var(--bor
   </section>
 
   <!-- Theme 2 -->
-  <section id="">
-    <span class="eyebrow">Thread 2</span>
-    <h2>Competency alignment and evaluation with the 2029 </h2>
-    <p class="intro">CSWE's 2025 Technology Task Force recommended making technology prominent in the 2029 . Draft 1 does both: it threads AI through existing competencies and proposes a new one. The draft is a moving target, so this is a good moment to map courses and plan assessment.</p>
+  <section id="epas">
+    <span class="eyebrow">Theme 2</span>
+    <h2>2029 EPAS alignment</h2>
+    <p class="intro">CSWE's 2025 Technology Task Force recommended making technology, including AI, prominent in the 2029 EPAS. Draft 1 of the 2029 EPAS was released in October 2026 and is now open for public comment. Draft 1 threads AI through existing competencies and proposes a new one (Competency 10: Ethical and Effective Use of Technology in Practice). Assuming the AI language and the new competency are retained in the final version, here are some things to keep in mind.</p>
 
     <h3>Where AI shows up in Draft 1</h3>
     <div class="table-wrap">
@@ -267,21 +320,30 @@ footer { margin-top: 72px; padding: 28px 0 48px; border-top: 1px solid var(--bor
         </tbody>
       </table>
     </div>
-    <p class="note">Paraphrased from the CSWE 2029  Draft 1 page (Oct 2026). Check the draft for exact wording before using it in course documents.</p>
+    <p class="note">Paraphrased from the CSWE 2029 EPAS Draft 1 page (Oct 2026). Check the draft for exact wording before using it in course documents.</p>
 
     <h3>Questions to consider</h3>
     <ol class="questions">
-      <li>A dedicated Competency 10 or AI woven through C1 to C9: which serves students better, and which is easier to assess?</li>
-      <li>What would a valid, observable behavior for "selects and integrates AI ethically" look like in field? Who rates it?</li>
-      <li>How are you assessing AI-related learning now: rubrics, simulations, portfolios, field evaluations?</li>
-      <li>What feedback will you or your program submit on the draft before November 20?</li>
+      <li>Does anything surprise you about how AI is mentioned in the 2029 EPAS?</li>
+      <li>How have you assessed AI-related or AI-assisted learning in your course so far (rubrics, simulations, portfolios, field evaluations)?</li>
+      <li>Given the 2029 EPAS, what in your course stays the same, and what needs to change?</li>
     </ol>
 
-    <h3>Read and borrow</h3>
+    <h3>Course syllabus example</h3>
+    <a class="file" href="resources/SWK7000_AI_Social_Institutions_Sample_Syllabus.docx" download>
+      <span class="file-icon" aria-hidden="true">DOCX</span>
+      <span>
+        <span class="t">SWK 7000: AI and Social Institutions Serving Children and Families</span>
+        <span class="d">Sample graduate syllabus (3 credit hours) with EPAS-linked competencies, AI practice labs, and a policy and governance brief.</span>
+      </span>
+      <span class="dl">Download</span>
+    </a>
+
+    <h3>Evidence and readings</h3>
     <div class="resources">
-      <a class="res" href="https://www.cswe.org/2029-">
+      <a class="res" href="https://www.cswe.org/2029-epas">
         <span class="tag">CSWE</span>
-        <span class="t">2029  Draft 1 and public comment survey</span>
+        <span class="t">2029 EPAS Draft 1 and public comment survey</span>
         <span class="d">Comment period Oct 13 to Nov 20, 2026. Draft 2 is expected for the 2027 APM.</span>
       </a>
       <a class="res" href="https://www.cswe.org/sites/default/files/2026-07/ARL_Technology_Report.pdf">
@@ -294,7 +356,7 @@ footer { margin-top: 72px; padding: 28px 0 48px; border-top: 1px solid var(--bor
         <span class="d">Ahn, Choi, Fowler, &amp; Song (2025), <em>JSSWR</em>. Maps AI literacy onto each of the nine current competencies; useful for course mapping.</span>
       </a>
       <a class="res" href="https://www.tandfonline.com/doi/abs/10.1080/10437797.2024.2340931">
-        <span class="t">Introducing Generative AI Into the MSW Curriculum: A Proposal for the 2029 </span>
+        <span class="t">Introducing Generative AI Into the MSW Curriculum: A Proposal for the 2029 EPAS</span>
         <span class="d">Rodriguez, Goldkind, Victor, Hiltz, &amp; Perron (2024), <em>JSWE</em>. The case for a tenth competency.</span>
       </a>
       <a class="res" href="https://www.socialworkers.org/Practice/NASW-Practice-Standards-Guidelines/Standards-for-Technology-in-Social-Work-Practice">
@@ -307,43 +369,135 @@ footer { margin-top: 72px; padding: 28px 0 48px; border-top: 1px solid var(--bor
 
   <!-- Theme 3 -->
   <section id="policy">
-    <span class="eyebrow">Thread 3</span>
-    <h2>Classroom and PhD program AI policies informed by ETHICS</h2>
-    <p class="intro">The ETHICS framework (Lee et al., 2025, <em>JSSWR</em>) sets six principles for AI use in social work research. The same principles give a structure for course syllabi and doctoral program guidance, where students are both learners and emerging researchers.</p>
-
-    <div class="table-wrap">
-      <table class="ethics">
-        <thead><tr><th scope="col" aria-label="Letter"></th><th scope="col">Principle</th><th scope="col">In a course syllabus</th><th scope="col">In a PhD program</th></tr></thead>
-        <tbody>
-          <tr><td class="letter">E</td><td class="principle">Equity</td><td>Ensure access to approved tools so policy does not reward students who can pay for premium AI.</td><td>Weigh who benefits from AI-enabled studies; avoid biased samples and data.</td></tr>
-          <tr><td class="letter">T</td><td class="principle">Transparency</td><td>Require a short AI-use statement on assignments: tool, purpose, and what the student changed.</td><td>Disclose AI use in proposals, IRB materials, and dissertations, with its limits.</td></tr>
-          <tr><td class="letter">H</td><td class="principle">Human-centeredness</td><td>Keep client and field information out of AI tools; protect the relational skills AI cannot practice for you.</td><td>Explain AI's role in consent and keep human oversight of AI-assisted coding and analysis.</td></tr>
-          <tr><td class="letter">I</td><td class="principle">Integrity</td><td>The student is accountable for every claim and citation; verify all AI output.</td><td>AI supports but does not replace the scholar; build ongoing AI literacy into training.</td></tr>
-          <tr><td class="letter">C</td><td class="principle">Collaboration</td><td>Co-create the policy with students in week one and revisit it mid-term.</td><td>Set data governance and authorship expectations with mentors and community partners.</td></tr>
-          <tr><td class="letter">S</td><td class="principle">Safety</td><td>Name clear stop points, such as no AI with case notes or identifiable data.</td><td>Set stop/go criteria for AI use and pause when privacy or stigma risks appear.</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="note">The columns apply ETHICS to teaching and doctoral training as a starting point for discussion. The framework itself was written for research.</p>
-
-    <h3>Starter syllabus language</h3>
-    <div class="syllabus" id="syllabus">
-      <button class="copy-btn" id="copyBtn" type="button">Copy</button>
-      <p>AI use in this course follows the ETHICS principles (Equity, Transparency, Human-centeredness, Integrity, Collaboration, Safety).</p>
-      <p>You may use <span class="ph">[approved tools]</span> for <span class="ph">[brainstorming, feedback on drafts, coding help]</span>. AI use is not permitted for <span class="ph">[reflection papers, exams, any task involving client or field information]</span>.</p>
-      <p>When you use AI, add a two-sentence note to your submission: which tool, for what, and what you changed. You are responsible for the accuracy of everything you submit, including citations.</p>
-      <p>Never enter identifiable client, agency, or field placement information into an AI tool. If you are unsure whether a use is appropriate, ask first. We will revisit this policy together at mid-semester.</p>
-    </div>
+    <span class="eyebrow">Theme 3</span>
+    <h2>AI policy</h2>
 
     <h3>Questions to consider</h3>
     <ol class="questions">
-      <li>Is your current syllabus policy about permission (allowed or banned) or about practice (how to use AI well)? Which ETHICS principle is missing?</li>
+      <li>Is your current syllabus policy about permission (allowed or banned) or about practice (how to use AI well)?</li>
       <li>Should a PhD program policy differ from a course policy? Think about comprehensive exams, dissertations, and AI as a research method versus a writing aid.</li>
       <li>How do you handle field: agency rules, client data, and AI documentation tools students already see at placement?</li>
-      <li>Who owns the policy at your school: individual faculty, the program, or the university? What is working?</li>
     </ol>
 
-    <h3>Read and borrow</h3>
+    <h3>Applying the ETHICS framework</h3>
+    <p class="intro">The ETHICS framework (Lee et al., 2025, <em>JSSWR</em>) sets six principles for AI use in social work research. The same principles give a structure for course syllabi and doctoral program guidance, where students are both learners and emerging researchers.</p>
+    <div class="table-wrap">
+      <table class="ethics">
+        <thead><tr><th scope="col" aria-label="Letter"></th><th scope="col">Principle</th><th scope="col">AI policy</th></tr></thead>
+        <tbody>
+          <tr><td class="letter">E</td><td class="principle">Equity</td><td>AI policy should ensure access to approved tools so policy does not reward students who can pay for premium AI.</td></tr>
+          <tr><td class="letter">T</td><td class="principle">Transparency</td><td>AI policy should require a short AI-use statement on assignments: tool, purpose, and what the student changed.</td></tr>
+          <tr><td class="letter">H</td><td class="principle">Human-centeredness</td><td>AI policy needs to note that the student is accountable for every claim and citation and should verify all AI output.</td></tr>
+          <tr><td class="letter">I</td><td class="principle">Integrity</td><td>AI policy should encourage ongoing learning and the development of AI knowledge and competency.</td></tr>
+          <tr><td class="letter">C</td><td class="principle">Collaboration</td><td>AI policy could emphasize students being open and curious while also critical of AI outputs in collaborative projects.</td></tr>
+          <tr><td class="letter">S</td><td class="principle">Safety</td><td>AI policy should clearly name stop points, such as no AI with case notes or identifiable data.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Example policies</h3>
+    <div class="docs">
+      <details class="doc">
+        <summary>
+          <span class="tag">Course syllabus</span>
+          <span class="t">Ohio State College of Social Work: Course Policy AI Statement</span>
+          <span class="d">Permitted uses, academic integrity, and a four-part AI disclosure with an example. Click to read the full statement.</span>
+        </summary>
+        <div class="doc-body">
+          <p>The Ohio State University College of Social Work promotes the development of technology literacy for all students and faculty. Accordingly, the College of Social Work allows students to use artificial intelligence (AI) tools in limited ways that support their learning.</p>
+          <h4>Generally permitted uses of AI tools</h4>
+          <p>Students may use AI tools for the following purposes:</p>
+          <ul>
+            <li><strong>Writing assistance:</strong> Improve spelling, grammar, and the structure of your own writing.</li>
+            <li><strong>Idea development:</strong> Brainstorming and initial idea generation.</li>
+          </ul>
+          <p>When using AI tools beyond these generally permitted uses, students must follow all course assignments and instructor guidelines, including limitations placed on the use of AI tools.</p>
+          <h4>Academic integrity and AI</h4>
+          <p>While AI can be a valuable tool, remember that academic integrity remains paramount. Attribute AI-generated content with proper citations and avoid plagiarism. Additionally, consider the accuracy of information incorporated in your assignment and the ethical implications of using AI in educational contexts.</p>
+          <h4>Disclosing your use of AI tools</h4>
+          <p>If using AI tools, briefly include the following information with your submission, either at the end of your assignment on a new page or in an additional attachment. This should be brief, but enough to explain your usage:</p>
+          <ul>
+            <li><strong>Application used:</strong> Specify the AI application or tool you used (e.g., Copilot, ChatGPT, Claude AI, Gemini).</li>
+            <li><strong>Purpose:</strong> Describe the purpose for which you used AI (e.g., idea generation, writing assistance, content creation).</li>
+            <li><strong>Iteration and refinement:</strong> Briefly explain the quality of the initial output and how you revised prompts or adjusted parameters to refine the AI output. Did you experiment with different input prompts to improve the results?</li>
+            <li><strong>Incorporation in completed assignment:</strong> Briefly reflect on how you incorporated the AI-generated content into your assignment. How did you edit, adapt, or combine it with other ideas?</li>
+          </ul>
+          <blockquote><strong>Example disclosure:</strong> For the engaging a group assignment, I used ChatGPT to brainstorm different group topics and structures to familiarize myself with how groups are usually structured. I then asked for examples of groups, which I used to conduct further research through the library. Initial responses were very generic, but I used follow-up questions to probe and get more specific ideas. My group is based on one of the ideas. I also used Grammarly for writing assistance and feedback.</blockquote>
+          <a class="dl-link" href="resources/OSU_CSW_AI_Statement.docx" download>Download the statement (Word)</a>
+        </div>
+      </details>
+
+      <details class="doc">
+        <summary>
+          <span class="tag">PhD program</span>
+          <span class="t">Ohio State College of Social Work PhD Program: Guidelines on the Use of AI in Candidacy and Dissertation</span>
+          <span class="d">Expectations, appropriate and inappropriate uses, and sample disclosure statements for candidacy exams and dissertations. Click to read a summary.</span>
+        </summary>
+        <div class="doc-body">
+          <p>PhD students may use AI-assisted tools that align with three expectations: submissions are the student's original scholarship and writing; students demonstrate mastery of skills independent of AI; and the work is authentically human, with the student as the driver of the scholarship. Students consult their advisor and committee before using AI, verify all AI-generated information, and refer to <a href="https://ai.osu.edu/resources-buckeyes/approved-ai-tools">Ohio State's approved AI tools</a> and the <a href="https://www.journals.uchicago.edu/doi/10.1086/739116">ETHICS framework</a>. A detailed disclosure statement is required whenever AI is used.</p>
+          <div class="two-col">
+            <div>
+              <h4>Candidacy examination</h4>
+              <p class="mini">Appropriate</p>
+              <ul>
+                <li>Writing assistance: spelling, grammar, and structure.</li>
+                <li>Supporting academic and non-academic literature searches, with references verified by the student.</li>
+              </ul>
+              <p class="mini">Inappropriate</p>
+              <ul>
+                <li>Copying and pasting AI-generated text into candidacy documents.</li>
+                <li>Using AI to brainstorm ideas or draft research questions that do not originate from the student.</li>
+                <li>Using AI to synthesize information, draw conclusions, or generate content.</li>
+                <li>Uploading candidacy questions to AI for guidance during the exam period.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Dissertation</h4>
+              <p class="mini">Appropriate</p>
+              <ul>
+                <li>Writing assistance: spelling, grammar, and structure.</li>
+                <li>Data preparation, such as transcription the student checks against the audio.</li>
+                <li>Data analysis, when appropriate and in consultation with the advisor and committee.</li>
+              </ul>
+              <p class="mini">Inappropriate</p>
+              <ul>
+                <li>Copying and pasting AI-generated text into the dissertation.</li>
+                <li>Using AI to brainstorm ideas or draft research questions that do not originate from the student.</li>
+                <li>Using AI to summarize and synthesize findings, draw conclusions, or generate content.</li>
+              </ul>
+            </div>
+          </div>
+          <blockquote><strong>Example disclosure (candidacy):</strong> I am the sole author of this candidacy paper. Artificial Intelligence (AI) tools were used exclusively for language proofreading (e.g., breaking down long sentences) and for supporting both academic and non-academic literature searches. All suggested language changes and identified literature were reviewed and verified by me to ensure accuracy. The structural organization, original (non-referenced) content, argumentation, proposed methods, and conclusions presented in this candidacy submission are entirely my own work.</blockquote>
+          <p>Submissions substantially developed by AI, or containing sections substantially developed by AI, are not accepted. Suspected misuse may be referred to the Committee on Academic Misconduct, with candidacy or progress toward graduation paused, and allegations of AI-enabled plagiarism, fabrication, or falsification are reviewed under the University Policy on Research Misconduct.</p>
+          <a class="dl-link" href="resources/OSU_CSW_PhD_AI_Guidelines.pdf" download>Download the full guidelines (PDF)</a>
+        </div>
+      </details>
+    </div>
+
+    <h3>AI course assignment repositories</h3>
+    <div class="resources">
+      <a class="res" href="https://ctl.wustl.edu/resources/generative-ai-teaching-activities-online-repository/">
+        <span class="tag">WashU</span>
+        <span class="t">Generative AI Teaching Activities: Online Repository</span>
+        <span class="d">Washington University in St. Louis Center for Teaching and Learning.</span>
+      </a>
+      <a class="res" href="https://ctl.wustl.edu/creating-gemini-gems-chatbots-to-support-teaching/">
+        <span class="tag">WashU</span>
+        <span class="t">Creating Gemini Gems (Custom Chatbots) for Teaching</span>
+        <span class="d">Best practices, a template, and instructions for creating custom chatbots using WashU's Gemini EDU.</span>
+      </a>
+      <a class="res" href="https://stars.library.ucf.edu/cgi/viewcontent.cgi?article=1097&amp;context=oer">
+        <span class="tag">PDF</span>
+        <span class="t">ChatGPT Assignments to Use in Your Classroom Today</span>
+        <span class="d">Yee et al., University of Central Florida.</span>
+      </a>
+      <a class="res" href="https://docs.google.com/presentation/d/1wVgLWgeEvJm3fznlm0aV8ZiuWsW3o3aUQUCcvuM5vxQ/edit?usp=sharing">
+        <span class="t">101 Creative Ideas to Use AI in Education: A Crowdsourced Collection</span>
+        <span class="d">Online resource and published volume, ed. Chrissi Nerantzi (University of Leeds) et al.</span>
+      </a>
+    </div>
+
+    <h3>Readings</h3>
     <div class="resources">
       <a class="res" href="https://www.journals.uchicago.edu/doi/full/10.1086/739116">
         <span class="t">ETHICS: An Ethical Framework for AI Use in Social Work Research</span>
@@ -371,15 +525,64 @@ footer { margin-top: 72px; padding: 28px 0 48px; border-top: 1px solid var(--bor
         <span class="d">University of Kansas Center for Teaching Excellence. Practical options from restrictive to open.</span>
       </a>
     </div>
+
+    <h3>Try it out: more teaching resources</h3>
+    <div class="resources">
+      <a class="res" href="https://blogs.ubc.ca/aichallenges/">
+        <span class="t">AI-Integrated Teaching Challenges</span>
+        <span class="d">A collection of "challenges" meant to help guide your use of AI to supplement your teaching.</span>
+      </a>
+      <a class="res" href="https://docs.google.com/spreadsheets/d/1EIhtEI9P39276k1CfTnGo_AcxVV7R8Id/edit?usp=sharing&amp;ouid=110997737923159747614&amp;rtpof=true&amp;sd=true">
+        <span class="t">AI Use Cases in Higher Education: A Community Handbook</span>
+        <span class="d">A collection of AI use cases implemented across several colleges and universities.</span>
+      </a>
+      <a class="res" href="https://ecampus.oregonstate.edu/faculty/artificial-intelligence-tools/blooms-taxonomy-revisited/">
+        <span class="t">Bloom's Taxonomy Revisited</span>
+        <span class="d">Oregon State University. How AI may supplement each level of cognition, organized by Bloom's taxonomy.</span>
+      </a>
+      <a class="res" href="https://teaching.resources.osu.edu/teaching-topics/ai-teaching-strategies-transparent">
+        <span class="t">AI Teaching Strategies: Transparent Assignment Design</span>
+        <span class="d">A guide for creating assignments with transparency.</span>
+      </a>
+      <a class="res" href="https://spokane.wustl.edu/record=b10267732~S2">
+        <span class="t">Teaching with AI: A Practical Guide to a New Era of Human Learning</span>
+        <span class="d">Available as an eBook through the WashU libraries.</span>
+      </a>
+      <a class="res" href="https://aipedagogy.org/">
+        <span class="t">AI Pedagogy Project</span>
+        <span class="d">Harvard's guide to teaching with AI, including a repository of AI-inclusive assignments.</span>
+      </a>
+      <a class="res" href="https://www.chronicle.com/article/5-small-steps-for-ai-skeptics">
+        <span class="t">5 Small Steps for AI Skeptics</span>
+        <span class="d">Small steps to ease your way into teaching with AI.</span>
+      </a>
+    </div>
   </section>
 
-  <!-- Shelf -->
+  <!-- Theme 4 -->
   <section id="shelf">
-    <span class="eyebrow">Keep Going</span>
-    <h2>Networks and Other Resources</h2>
+    <span class="eyebrow">Theme 4</span>
+    <h2>Additional resources</h2>
     <div class="shelf-cols">
       <div>
-        <h3>Communities</h3>
+        <h3>AI literacy</h3>
+        <div class="resources">
+          <a class="res" href="https://academy.claude.com/">
+            <span class="t">Claude Academy</span>
+            <span class="d">Learn how LLMs work through free modules from Claude developers.</span>
+          </a>
+          <a class="res" href="https://www.datacamp.com/blog/category/datacamp-classrooms">
+            <span class="t">DataCamp Classrooms</span>
+            <span class="d">Modules on intro to AI, AI ethics, agentic AI systems, and more. Educators can request free access with an institutional email.</span>
+          </a>
+          <a class="res" href="https://sicss.io/boot_camp/">
+            <span class="t">Summer Institutes in Computational Social Science: Boot Camp</span>
+            <span class="d">Free modules on machine learning and other data science methods.</span>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3>Communities and networks</h3>
         <div class="resources">
           <a class="res" href="https://socialworkai.net">
             <span class="t">Social Work AI Network (SWAN)</span>
@@ -395,23 +598,6 @@ footer { margin-top: 72px; padding: 28px 0 48px; border-top: 1px solid var(--bor
           <a class="res" href="https://www.husita.org">
             <span class="t">husITa</span>
             <span class="d">International association for ethical technology in human services.</span>
-          </a>
-        </div>
-      </div>
-      <div>
-        <h3>Build your own skills</h3>
-        <div class="resources">
-          <a class="res" href="https://www.kaggle.com/learn">
-            <span class="t">Kaggle Learn</span>
-            <span class="d">Short, free courses in Python, pandas, and machine learning.</span>
-          </a>
-          <a class="res" href="https://carpentries.org">
-            <span class="t">The Carpentries</span>
-            <span class="d">Workshops on coding and data skills for researchers.</span>
-          </a>
-          <a class="res" href="https://sicss.io">
-            <span class="t">SICSS</span>
-            <span class="d">Computational social science institutes and open lectures.</span>
           </a>
         </div>
       </div>
@@ -437,16 +623,6 @@ footer { margin-top: 72px; padding: 28px 0 48px; border-top: 1px solid var(--bor
     var next = current === 'dark' ? 'light' : 'dark';
     root.setAttribute('data-theme', next);
     try { localStorage.setItem('theme', next); } catch (e) {}
-  });
-
-  // Copy syllabus language
-  var btn = document.getElementById('copyBtn');
-  btn.addEventListener('click', function () {
-    var text = Array.prototype.map.call(document.querySelectorAll('#syllabus p'), function (p) {
-      return p.textContent;
-    }).join('\n\n');
-    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); };
-    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () {});
   });
 
   // Highlight current section in nav
