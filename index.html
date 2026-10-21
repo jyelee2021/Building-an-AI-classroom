@@ -89,10 +89,6 @@ nav.toc a {
   font-size: 14px; font-weight: 500; padding: 6px 12px; border-radius: 999px;
 }
 nav.toc a:hover, nav.toc a.active { background: var(--accent-soft); color: var(--accent-text); }
-.theme-btn {
-  margin-left: auto; flex-shrink: 0; background: none; border: 1px solid var(--border);
-  color: var(--muted); border-radius: 999px; padding: 5px 10px; font: inherit; font-size: 13px; cursor: pointer;
-}
 
 /* Sections */
 section { padding: 56px 0 8px; }
@@ -240,7 +236,6 @@ footer { margin-top: 72px; padding: 28px 0 48px; border-top: 1px solid var(--bor
     <a href="#epas">2029 EPAS alignment</a>
     <a href="#policy">AI policy</a>
     <a href="#shelf">Additional resources</a>
-    <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle color theme">Theme</button>
   </div>
 </nav>
 
@@ -618,17 +613,6 @@ footer { margin-top: 72px; padding: 28px 0 48px; border-top: 1px solid var(--bor
 
 <script>
 (function () {
-  // Theme toggle
-  var root = document.documentElement;
-  try { var saved = localStorage.getItem('theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
-  document.getElementById('themeBtn').addEventListener('click', function () {
-    var current = root.getAttribute('data-theme') ||
-      (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    var next = current === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('theme', next); } catch (e) {}
-  });
-
   // Highlight current section in nav
   var links = document.querySelectorAll('nav.toc a');
   var obs = new IntersectionObserver(function (entries) {
