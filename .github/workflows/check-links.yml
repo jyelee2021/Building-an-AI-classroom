@@ -1,8 +1,6 @@
 name: Check links
 
 on:
-  push:
-    paths: [index.html, scripts/check_links.py, .github/workflows/check-links.yml]
   workflow_dispatch:
 
 jobs:
