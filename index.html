@@ -164,7 +164,9 @@ ol.strategies strong { display: block; margin-bottom: 2px; }
   display: flex; align-items: center; gap: 16px; text-decoration: none; color: var(--text);
   background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; box-shadow: var(--shadow);
 }
-.file:hover { border-color: var(--accent); }
+a.file:hover { border-color: var(--accent); }
+.file .d a { color: var(--accent); }
+.dl { text-decoration: none; }
 .file > span:nth-child(2) { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
 .file .t { font-weight: 600; color: var(--accent); line-height: 1.35; }
 .file .d { font-size: 14.5px; color: var(--muted); }
@@ -263,35 +265,6 @@ footer { margin-top: 72px; padding: 28px 0 48px; border-top: 1px solid var(--bor
       <li><strong>If possible, use real data and teach MSW and doctoral students differently.</strong> MSW students should work with practice-facing tools, documentation privacy, data visualization, and program evaluation; employer postings name these skills (Hiltz, Victor, &amp; Perron, 2024). Doctoral students should learn, build, and validate computational methods (e.g., supervised and unsupervised machine learning) on complex data.</li>
     </ol>
 
-    <h3>Evidence and readings</h3>
-    <div class="resources">
-      <a class="res" href="https://link.springer.com/chapter/10.1007/978-3-032-18443-6_23">
-        <span class="t">Building AI Literacy and Competency in Social Work</span>
-        <span class="d">Yang &amp; Liechty (2026), in <em>Artificial Intelligence in Social Work</em>. A three-tier model: foundational literacy for all, applied skills, and leadership and governance.</span>
-      </a>
-      <a class="res" href="https://link.springer.com/book/9783032184429">
-        <span class="t">Artificial Intelligence in Social Work: Bridging Technology and Humanity</span>
-        <span class="d">An &amp; Lindsey (Eds.), Springer, 2026. Edited volume with chapters on ethics, literacy, and practice.</span>
-      </a>
-      <a class="res" href="https://learningacademy.cswe.org/products/integrating-ai-into-social-work-education-making-the-leap-into-our-future">
-        <span class="tag">CSWE</span>
-        <span class="t">Integrating AI into Social Work Education: Making the Leap into Our Future</span>
-        <span class="d">CSWE Learning Academy course for educators.</span>
-      </a>
-      <a class="res" href="https://iriss.org.uk/resource/generative-ai-critical-thinking-and-social-work-practice/">
-        <span class="t">Generative AI, Critical Thinking and Social Work Practice</span>
-        <span class="d">Iriss (Scotland). Short, practice-facing resource that works well as a class reading.</span>
-      </a>
-      <a class="res" href="https://arxiv.org/pdf/2603.06839">
-        <span class="tag">Preprint</span>
-        <span class="t">From Job Postings to Curriculum Decisions</span>
-        <span class="d">Using AI to analyze job postings as workforce intelligence for MSW program planning.</span>
-      </a>
-      <a class="res" href="https://sicss.io">
-        <span class="t">Summer Institutes in Computational Social Science</span>
-        <span class="d">Free open-access lectures and materials you can adapt for a doctoral methods course.</span>
-      </a>
-    </div>
   </section>
 
   <!-- Theme 2 -->
@@ -334,32 +307,6 @@ footer { margin-top: 72px; padding: 28px 0 48px; border-top: 1px solid var(--bor
       <span class="dl">Download</span>
     </a>
 
-    <h3>Evidence and readings</h3>
-    <div class="resources">
-      <a class="res" href="https://www.cswe.org/2029-epas">
-        <span class="tag">CSWE</span>
-        <span class="t">2029 EPAS Draft 1 and public comment survey</span>
-        <span class="d">Comment period Oct 13 to Nov 20, 2026. Draft 2 is expected for the 2027 APM.</span>
-      </a>
-      <a class="res" href="https://www.cswe.org/sites/default/files/2026-07/ARL_Technology_Report.pdf">
-        <span class="tag">CSWE</span>
-        <span class="t">Task Force on Technology and Social Work Education Report</span>
-        <span class="d">The recommendations behind the draft, including minimum AI competency and field education standards.</span>
-      </a>
-      <a class="res" href="https://www.journals.uchicago.edu/doi/full/10.1086/735187">
-        <span class="t">AI Literacy for Social Work: Implications for Core Competencies</span>
-        <span class="d">Ahn, Choi, Fowler, &amp; Song (2025), <em>JSSWR</em>. Maps AI literacy onto each of the nine current competencies; useful for course mapping.</span>
-      </a>
-      <a class="res" href="https://www.tandfonline.com/doi/abs/10.1080/10437797.2024.2340931">
-        <span class="t">Introducing Generative AI Into the MSW Curriculum: A Proposal for the 2029 EPAS</span>
-        <span class="d">Rodriguez, Goldkind, Victor, Hiltz, &amp; Perron (2024), <em>JSWE</em>. The case for a tenth competency.</span>
-      </a>
-      <a class="res" href="https://www.socialworkers.org/Practice/NASW-Practice-Standards-Guidelines/Standards-for-Technology-in-Social-Work-Practice">
-        <span class="tag">NASW · ASWB · CSWE · CSWA</span>
-        <span class="t">Standards for Technology in Social Work Practice</span>
-        <span class="d">The 2017 joint standards, including the section on social work education.</span>
-      </a>
-    </div>
   </section>
 
   <!-- Theme 3 -->
@@ -470,25 +417,89 @@ footer { margin-top: 72px; padding: 28px 0 48px; border-top: 1px solid var(--bor
     </div>
 
 
-    <h3>Readings</h3>
+
+  </section>
+
+  <!-- Theme 4 -->
+  <section id="shelf">
+    <span class="eyebrow">Theme 4</span>
+    <h2>Additional resources</h2>
+    <h3>Featured resource list</h3>
+    <div class="file">
+      <span class="file-icon" aria-hidden="true">PDF</span>
+      <span>
+        <span class="t">Social Work &amp; Artificial Intelligence Resources</span>
+        <span class="d">Compiled by Lauri Goldkind (Fordham University). Books, organizations worth following, podcasts, and academic articles on social work and AI, organized by individual, agency, and community practice, social justice and ethics, and social work education. Shared under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> license. <a href="https://forms.gle/7dPhk3YNursp9Ruv5">Suggest a resource for the list</a>.</span>
+      </span>
+      <a class="dl" href="resources/Goldkind_SW_and_AI_Resources.pdf" download>Download</a>
+    </div>
+
+    <h3>Standards and accreditation</h3>
+    <div class="resources">
+      <a class="res" href="https://www.cswe.org/2029-epas">
+        <span class="tag">CSWE</span>
+        <span class="t">2029 EPAS Draft 1 and public comment survey</span>
+        <span class="d">Comment period Oct 13 to Nov 20, 2026. Draft 2 is expected for the 2027 APM.</span>
+      </a>
+      <a class="res" href="https://www.cswe.org/sites/default/files/2026-07/ARL_Technology_Report.pdf">
+        <span class="tag">CSWE</span>
+        <span class="t">Task Force on Technology and Social Work Education Report</span>
+        <span class="d">The recommendations behind the draft, including minimum AI competency and field education standards.</span>
+      </a>
+      <a class="res" href="https://www.socialworkers.org/Practice/NASW-Practice-Standards-Guidelines/Standards-for-Technology-in-Social-Work-Practice">
+        <span class="tag">NASW · ASWB · CSWE · CSWA</span>
+        <span class="t">Standards for Technology in Social Work Practice</span>
+        <span class="d">The 2017 joint standards, including the section on social work education.</span>
+      </a>
+    </div>
+
+    <h3>Curriculum and competencies</h3>
+    <div class="resources">
+      <a class="res" href="https://link.springer.com/chapter/10.1007/978-3-032-18443-6_23">
+        <span class="t">Building AI Literacy and Competency in Social Work</span>
+        <span class="d">Yang &amp; Liechty (2026), in <em>Artificial Intelligence in Social Work</em>. A three-tier model: foundational literacy for all, applied skills, and leadership and governance.</span>
+      </a>
+      <a class="res" href="https://www.journals.uchicago.edu/doi/full/10.1086/735187">
+        <span class="t">AI Literacy for Social Work: Implications for Core Competencies</span>
+        <span class="d">Ahn, Choi, Fowler, &amp; Song (2025), <em>JSSWR</em>. Maps AI literacy onto each of the nine current competencies; useful for course mapping.</span>
+      </a>
+      <a class="res" href="https://www.tandfonline.com/doi/abs/10.1080/10437797.2024.2340931">
+        <span class="t">Introducing Generative AI Into the MSW Curriculum: A Proposal for the 2029 EPAS</span>
+        <span class="d">Rodriguez, Goldkind, Victor, Hiltz, &amp; Perron (2024), <em>JSWE</em>. The case for a tenth competency.</span>
+      </a>
+      <a class="res" href="https://link.springer.com/book/9783032184429">
+        <span class="t">Artificial Intelligence in Social Work: Bridging Technology and Humanity</span>
+        <span class="d">An &amp; Lindsey (Eds.), Springer, 2026. Edited volume with chapters on ethics, literacy, and practice.</span>
+      </a>
+    </div>
+
+    <h3>Ethics and practice</h3>
     <div class="resources">
       <a class="res" href="https://www.journals.uchicago.edu/doi/full/10.1086/739116">
         <span class="t">ETHICS: An Ethical Framework for AI Use in Social Work Research</span>
         <span class="d">Lee, Pace, Cha, Rao, Hahm, An, &amp; Denby-Brinson (2025), <em>JSSWR</em> 16(4).</span>
+      </a>
+      <a class="res" href="https://link.springer.com/chapter/10.1007/978-3-032-18443-6_2">
+        <span class="t">Ethical Foundations of AI in Social Work</span>
+        <span class="d">Chapter in An &amp; Lindsey (Eds.), 2026.</span>
       </a>
       <a class="res" href="https://www.socialworkers.org/About/Ethics/AI-and-Social-Work">
         <span class="tag">NASW</span>
         <span class="t">NASW: AI and Social Work</span>
         <span class="d">Ethics tipsheet, privacy guidance, CE courses, and podcasts in one hub.</span>
       </a>
-      <a class="res" href="https://link.springer.com/chapter/10.1007/978-3-032-18443-6_2">
-        <span class="t">Ethical Foundations of AI in Social Work</span>
-        <span class="d">Chapter in An &amp; Lindsey (Eds.), 2026.</span>
+      <a class="res" href="https://iriss.org.uk/resource/generative-ai-critical-thinking-and-social-work-practice/">
+        <span class="t">Generative AI, Critical Thinking and Social Work Practice</span>
+        <span class="d">Iriss (Scotland). Short, practice-facing resource that works well as a class reading.</span>
       </a>
       <a class="res" href="https://www.socialworktoday.com/archive/Summer23p26.shtml">
         <span class="t">Ethics and Best Practices: AI and Social Work Education</span>
         <span class="d"><em>Social Work Today</em>. An accessible overview to share with colleagues new to the topic.</span>
       </a>
+    </div>
+
+    <h3>Syllabus AI policy guides</h3>
+    <div class="resources">
       <a class="res" href="https://libguides.bluffton.edu/ai/policy">
         <span class="t">Syllabi Policies for AI Generative Tools</span>
         <span class="d">Links to Lance Eaton's crowdsourced collection of real syllabus policies across disciplines.</span>
@@ -499,12 +510,6 @@ footer { margin-top: 72px; padding: 28px 0 48px; border-top: 1px solid var(--bor
       </a>
     </div>
 
-  </section>
-
-  <!-- Theme 4 -->
-  <section id="shelf">
-    <span class="eyebrow">Theme 4</span>
-    <h2>Additional resources</h2>
     <div class="shelf-cols">
       <div>
         <h3>AI literacy</h3>
